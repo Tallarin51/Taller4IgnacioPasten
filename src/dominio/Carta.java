@@ -1,5 +1,7 @@
 package dominio;
 
+import patrones.CartaVisitor;
+
 public abstract class Carta {
 
 	protected String nombreCarta;
@@ -14,6 +16,9 @@ public abstract class Carta {
 		this.tipo = tipo;
 		this.rutaImagen = "imagenes/" + nombreCarta + ".jpg";
 	}
+	
+	public abstract int visitar(CartaVisitor visitor);
+	
 	public String getNombreCarta() {
 		return nombreCarta;
 	}

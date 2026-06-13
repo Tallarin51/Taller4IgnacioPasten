@@ -1,10 +1,12 @@
 package dominio;
 
+import patrones.CartaVisitor;
+
 public class CartaItem extends Carta{
 	
 	private int bonificacion;
 	
-	public CartaItem(String nombreCarta, int rareza, String tipo, int bonificacion) {
+	public CartaItem(String nombreCarta, int rareza,int bonificacion) {
 		super(nombreCarta, rareza, "Item");
 		this.bonificacion = bonificacion;
 	}
@@ -15,6 +17,11 @@ public class CartaItem extends Carta{
 
 	public void setBonificacion(int bonificacion) {
 		this.bonificacion = bonificacion;
+	}
+
+	@Override
+	public int visitar(CartaVisitor visitor) {
+		return visitor.visitarItem(this);
 	}
 
 }

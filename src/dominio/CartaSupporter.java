@@ -1,10 +1,12 @@
 package dominio;
 
+import patrones.CartaVisitor;
+
 public class CartaSupporter extends Carta{
 	
 	private int efectosPorTurno;
 	
-	public CartaSupporter(String nombreCarta, int rareza, String tipo, int efectosPorTurno) {
+	public CartaSupporter(String nombreCarta, int rareza, int efectosPorTurno) {
 		super(nombreCarta, rareza, "Supporter");
 		this.efectosPorTurno = efectosPorTurno;
 	}
@@ -15,6 +17,11 @@ public class CartaSupporter extends Carta{
 
 	public void setEfectosPorTurno(int efectosPorTurno) {
 		this.efectosPorTurno = efectosPorTurno;
+	}
+
+	@Override
+	public int visitar(CartaVisitor visitor) {
+		return visitor.visitarSupporter(this);
 	}
 
 }
