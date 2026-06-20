@@ -20,4 +20,6 @@ public interface Sistema {
 
     void cargarCartasDesdeArchivo(String rutaArchivo);
 	
+    void guardarCartasEnArchivo(String rutaArchivo);
+    
 }

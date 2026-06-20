@@ -24,4 +24,9 @@ public class CartaSupporter extends Carta{
 		return visitor.visitarSupporter(this);
 	}
 
+	@Override
+	public String formatoArchivo() {
+		return nombreCarta + ";" + rareza + ";" + tipo + ";" + efectosPorTurno;
+	}
+
 }

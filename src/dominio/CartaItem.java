@@ -24,4 +24,9 @@ public class CartaItem extends Carta{
 		return visitor.visitarItem(this);
 	}
 
+	@Override
+	public String formatoArchivo() {
+		return nombreCarta + ";" + rareza + ";" + tipo + ";" + bonificacion;
+	}
+
 }

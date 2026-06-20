@@ -33,5 +33,10 @@ public class CartaPokemon extends Carta{
 	public int visitar(CartaVisitor visitor) {
 		return visitor.visitarPokemon(this);
 	}
+
+	@Override
+	public String formatoArchivo() {
+		return nombreCarta + ";" + rareza + ";" + tipo + ";" + daño + ";" + cantEnergias;
+	}
 	
 }

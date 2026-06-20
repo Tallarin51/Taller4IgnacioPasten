@@ -19,6 +19,8 @@ public abstract class Carta {
 	
 	public abstract int visitar(CartaVisitor visitor);
 	
+	public abstract String formatoArchivo();
+	
 	public String getNombreCarta() {
 		return nombreCarta;
 	}
@@ -36,6 +38,14 @@ public abstract class Carta {
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getRutaImagen() {
+		return rutaImagen;
+	}
+
+	public void setRutaImagen(String rutaImagen) {
+		this.rutaImagen = rutaImagen;
 	}
 	
 	

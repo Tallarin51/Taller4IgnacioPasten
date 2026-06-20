@@ -23,5 +23,10 @@ public class CartaEnergy extends Carta{
 	public int visitar(CartaVisitor visitor) {
 		return visitor.visitarEnergy(this);
 	}
+
+	@Override
+	public String formatoArchivo() {
+		return nombreCarta + ";" + rareza + ";" + tipo + ";" + elemento;
+	}
 	
 }

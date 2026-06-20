@@ -1,8 +1,10 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.io.*;
 import dominio.Carta;
+import patrones.CartaFactory;
 import patrones.StrategyOrdenamiento;
 
 public class SistemaImpl implements Sistema{
@@ -33,7 +35,15 @@ public class SistemaImpl implements Sistema{
 
 	@Override
 	public boolean eliminarCarta(String nombreCarta) {
-		
+		for (int i = 0; i < cartas.size(); i++) {
+			Carta carta = cartas.get(i);
+			
+			if (carta.getNombreCarta().equalsIgnoreCase(nombreCarta)) {
+				cartas.remove(i);
+				return true;
+			}
+			return false;
+		}
 		
 		
 		return false;
@@ -47,25 +57,60 @@ public class SistemaImpl implements Sistema{
 
 	@Override
 	public ArrayList<Carta> obtenerCartas() {
-		// TODO Auto-generated method stub
-		return null;
+		return cartas;
 	}
 
 	@Override
 	public void setEstrategiaOrdenamiento(StrategyOrdenamiento estrategia) {
-		// TODO Auto-generated method stub
-		
+		this.estrategia = estrategia;
 	}
 
 	@Override
 	public void ordenarCartas() {
-		// TODO Auto-generated method stub
+		if (estrategia != null) {
+			estrategia.ordenar(cartas);
+		}
+	}
+
+	@Override
+	public void cargarCartasDesdeArchivo(String nombreArchivo) {
+		
+		try {
+			File f = new File(nombreArchivo);
+			Scanner sc = new Scanner(f);
+			
+			while (sc.hasNextLine()) {
+				
+				String linea = sc.nextLine();
+				Carta carta = CartaFactory.crearCarta(linea);
+				agregarCarta(carta);
+				
+			}
+			
+			sc.close();
+			
+		} catch (IOException e) {
+			System.out.println("Error al cargar el archivo.");
+		}
 		
 	}
 
 	@Override
-	public void cargarCartasDesdeArchivo(String rutaArchivo) {
-		// TODO Auto-generated method stub
+	public void guardarCartasEnArchivo(String rutaArchivo) {
+		
+		try {
+	        FileWriter escritor = new FileWriter(rutaArchivo);
+
+	        for (int i = 0; i < cartas.size(); i++) {
+	            Carta carta = cartas.get(i);
+	            escritor.write(carta.formatoArchivo() + "\n");
+	        }
+
+	        escritor.close();
+
+	    } catch (Exception e) {
+	        System.out.println("Error al guardar cartas: " + e.getMessage());
+	    }
 		
 	}
 
