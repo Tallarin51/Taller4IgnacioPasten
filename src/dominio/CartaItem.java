@@ -28,5 +28,9 @@ public class CartaItem extends Carta{
 	public String formatoArchivo() {
 		return nombreCarta + ";" + rareza + ";" + tipo + ";" + bonificacion;
 	}
-
+	@Override
+	public String toString() {
+	    return super.toString() +
+	           " | Bonificación: " + bonificacion;
+	}
 }

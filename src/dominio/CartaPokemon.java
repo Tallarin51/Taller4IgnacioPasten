@@ -38,5 +38,10 @@ public class CartaPokemon extends Carta{
 	public String formatoArchivo() {
 		return nombreCarta + ";" + rareza + ";" + tipo + ";" + daño + ";" + cantEnergias;
 	}
-	
+	@Override
+	public String toString() {
+	    return super.toString() +
+	           " | Daño: " + daño +
+	           " | Energías: " + cantEnergias;
+	}
 }

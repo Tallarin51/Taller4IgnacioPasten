@@ -28,5 +28,9 @@ public class CartaEnergy extends Carta{
 	public String formatoArchivo() {
 		return nombreCarta + ";" + rareza + ";" + tipo + ";" + elemento;
 	}
-	
+	@Override
+	public String toString() {
+	    return super.toString() +
+	           " | Elemento: " + elemento;
+	}
 }

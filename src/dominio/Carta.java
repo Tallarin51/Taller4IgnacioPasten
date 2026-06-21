@@ -47,6 +47,11 @@ public abstract class Carta {
 	public void setRutaImagen(String rutaImagen) {
 		this.rutaImagen = rutaImagen;
 	}
-	
+	@Override
+	public String toString() {
+	    return "Nombre: " + nombreCarta +
+	           " | Rareza: " + rareza +
+	           " | Tipo: " + tipo;
+	}
 	
 }

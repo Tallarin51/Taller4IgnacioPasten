@@ -28,5 +28,10 @@ public class CartaSupporter extends Carta{
 	public String formatoArchivo() {
 		return nombreCarta + ";" + rareza + ";" + tipo + ";" + efectosPorTurno;
 	}
-
+	
+	@Override
+	public String toString() {
+	    return super.toString() +
+	           " | Efectos por turno: " + efectosPorTurno;
+	}
 }

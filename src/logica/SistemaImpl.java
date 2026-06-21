@@ -3,13 +3,13 @@ package logica;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
-import dominio.Carta;
+import dominio.*;
 import patrones.CartaFactory;
 import patrones.StrategyOrdenamiento;
 
 public class SistemaImpl implements Sistema{
 	
-	private static Sistema instancia = null;
+	private static Sistema instancia;
 	private ArrayList<Carta> cartas = new ArrayList<Carta>();
 	private StrategyOrdenamiento estrategia;
 	
@@ -42,7 +42,6 @@ public class SistemaImpl implements Sistema{
 				cartas.remove(i);
 				return true;
 			}
-			return false;
 		}
 		
 		
@@ -50,9 +49,57 @@ public class SistemaImpl implements Sistema{
 	}
 
 	@Override
-	public boolean modificarCarta(String nombreCarta, String nuevoValor1, String nuevoValor2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean modificarCarta(String nombreCarta, String valor1, String valor2) {
+		for (int i = 0; i < cartas.size(); i++) {
+	        Carta carta = cartas.get(i);
+
+	        if (carta.getNombreCarta().equalsIgnoreCase(nombreCarta)) {
+
+	            if (carta instanceof CartaPokemon) {
+	                CartaPokemon pokemon = (CartaPokemon) carta;
+	                int nuevoDano = Integer.parseInt(valor1);
+	                int nuevaCantEnergias = Integer.parseInt(valor2);
+
+	                pokemon.setDaño(nuevoDano);
+	                pokemon.setCantEnergias(nuevaCantEnergias);
+	                
+	                guardarCartasEnArchivo("Sobres.txt");
+	                return true;
+	            }
+
+	            if (carta instanceof CartaItem) {
+	                CartaItem item = (CartaItem) carta;
+
+	                int nuevaBonificacion = Integer.parseInt(valor1);
+	                item.setBonificacion(nuevaBonificacion);
+	                
+	                guardarCartasEnArchivo("Sobres.txt");
+	                return true;
+	            }
+
+	            if (carta instanceof CartaSupporter) {
+	                CartaSupporter supporter = (CartaSupporter) carta;
+
+	                int nuevosEfectos = Integer.parseInt(valor1);
+	                supporter.setEfectosPorTurno(nuevosEfectos);
+	                
+	                guardarCartasEnArchivo("Sobres.txt");
+	                return true;
+	            }
+
+	            if (carta instanceof CartaEnergy) {
+	                CartaEnergy energy = (CartaEnergy) carta;
+
+	                energy.setElemento(valor1);
+	                
+	                guardarCartasEnArchivo("Sobres.txt");
+	                return true;
+	            }
+	        }
+	    }
+
+	    return false;
+		
 	}
 
 	@Override

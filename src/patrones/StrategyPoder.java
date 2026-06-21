@@ -12,7 +12,7 @@ public class StrategyPoder implements StrategyOrdenamiento  {
 		 CalcularPoderVisitor visitor = new CalcularPoderVisitor();
 		
 		 for (int i = 0; i < cartas.size() - 1; i++) {
-			 for (int j = 0; j < cartas.size(); j++) {
+			 for (int j = i + 1; j < cartas.size(); j++) {
 				 
 				 int poder1 = cartas.get(i).visitar(visitor);
 				 int poder2 = cartas.get(j).visitar(visitor);
